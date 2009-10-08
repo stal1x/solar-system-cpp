@@ -8,7 +8,12 @@
  */
 
 #include <algorithm>
+#include <string>
 
+class Tuple3;
+class Point3;
+class Vector3;
+class Color;
 
 class Tuple3
 {
@@ -30,16 +35,16 @@ public:
     }
 	
 	
-    /**
-     * Copy constructor. This constructor simply calls the explicit constructor
-     * with the necessary fields from the input as parameters.
-     * 
-     * @param newTuple The vector to copy.
-     */
-    Tuple3 (Tuple3 newTuple)
-    {
-        Tuple3(newTuple.x, newTuple.y, newTuple.z);
-    }
+//    /**
+//     * Copy constructor. This constructor simply calls the explicit constructor
+//     * with the necessary fields from the input as parameters.
+//     * 
+//     * @param newTuple The vector to copy.
+//     */
+//    Tuple3 (Tuple3 newTuple)
+//    {
+//        Tuple3(newTuple.x, newTuple.y, newTuple.z);
+//    }
 	
 	
     /**
@@ -104,7 +109,7 @@ public:
     /**
      * @see Object#toString()
      */
-    String toString ()
+    string toString ()
     {
         return "[" + x + "," + y + "," + z + "]";
     }
@@ -121,15 +126,15 @@ public:
 	}
 	
 	
-    /**
-     * Copy constructor. This constructor simply calls the explicit constructor
-     * with the necessary fields from the input as parameters.
-     * 
-     * @param newTuple The Point3 to copy.
-     */
-    Point3 (Point3 newTuple) : Tuple3(newTuple)
-    {
-    }
+//    /**
+//     * Copy constructor. This constructor simply calls the explicit constructor
+//     * with the necessary fields from the input as parameters.
+//     * 
+//     * @param newTuple The Point3 to copy.
+//     */
+//    Point3 (Point3 newTuple) : Tuple3(newTuple)
+//    {
+//    }
 	
 	
     /**
@@ -247,16 +252,16 @@ public:
     {
     }
 	
-	
-    /**
-     * Copy constructor. This constructor simply calls the explicit constructor
-     * with the necessary fields from the input as parameters.
-     * 
-     * @param newTuple The vector to copy.
-     */
-    Vector3 (Tuple3 newTuple) : Tuple3(newTuple)
-    {
-    }
+//	
+//    /**
+//     * Copy constructor. This constructor simply calls the explicit constructor
+//     * with the necessary fields from the input as parameters.
+//     * 
+//     * @param newTuple The vector to copy.
+//     */
+//    Vector3 (Tuple3 newTuple) : Tuple3(newTuple)
+//    {
+//    }
 	
 	
     /**
@@ -577,7 +582,7 @@ public:
     /**
      * @see Object#toString()
      */
-    String toString ()
+    string toString ()
     {
         return "[" + r + "," + g + "," + b + "]";
     }
