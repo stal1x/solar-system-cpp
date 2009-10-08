@@ -60,22 +60,22 @@ class SolarSystem
 					vector<string> rAxisString = split(ss2, ' ');
 					vector<string> oAxisString = split(ss3, ' ');
 					
-					double rot = atof(tokens[2].c_str);
-					double dist = atof(tokens[3].c_str);
+					double rot = atof(tokens[2].c_str());
+					double dist = atof(tokens[3].c_str());
 					SpaceObject oCenter = get(tokens[4]);
-					Vector3 rAxis = new Vector3(atof(rAxisString[0].c_str), atof(rAxisString[1].c_str), atof(rAxisString[2].c_str));
-					double size = atof(tokens[6].c_str);
+					Vector3 *rAxis = new Vector3(atof(rAxisString[0].c_str()), atof(rAxisString[1].c_str()), atof(rAxisString[2].c_str()));
+					double size = atof(tokens[6].c_str());
 					string name = tokens[1];
-					Vector3 oAxis = new Vector3(atof(oAxisString[0].c_str), atof(oAxisString[1].c_str), atof(oAxisString[2].c_str));
-					double oTilt = atof(tokens[8].c_str);
-					double rTilt = atof(tokens[9].c_str);
-					double oSpeed = atof(tokens[10].c_str);
+					Vector3 *oAxis = new Vector3(atof(oAxisString[0].c_str()), atof(oAxisString[1].c_str()), atof(oAxisString[2].c_str()));
+					double oTilt = atof(tokens[8].c_str());
+					double rTilt = atof(tokens[9].c_str());
+					double oSpeed = atof(tokens[10].c_str());
 					
 					if(tokens[0].compare("Sun") == 0)
 					{
 						Sun *obj = new Sun();
-						obj->setParameters(rot, dist, &oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(&obj);
+						obj->setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						myObjects->insert(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
@@ -84,8 +84,8 @@ class SolarSystem
 					else if(tokens[0].compare("Planet") == 0)
 					{
 						Planet *obj = new Planet();
-						obj->(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(&obj);
+						obj->setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						myObjects->insert(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
@@ -94,8 +94,8 @@ class SolarSystem
 					else 
 					{
 						Moon *obj = new Moon();
-						obj->(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(&obj);
+						obj->setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						myObjects->insert(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
