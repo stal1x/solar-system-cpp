@@ -15,7 +15,8 @@
 #define _THE_SCENE_H_
 // include here so users do not have to later
 #include "cglx.h"
-
+#include "solar_system.h"
+#include "vector_math.h"
 
 //////////////////////////////////////////////////////////////////
 // Class Decalration
