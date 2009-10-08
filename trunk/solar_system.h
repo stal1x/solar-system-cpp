@@ -17,7 +17,7 @@ class SolarSystem
 	
 	void add(SpaceObject *obj)
 	{
-		for(int k = 0; k<myObjects->size(); k++)
+		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
 			if((*myObjects)[k]->getName().compare(obj->getParentName()) == 0)
 			{
@@ -28,12 +28,12 @@ class SolarSystem
 	
 	SpaceObject get(string name)
 	{
-		for(int k = 0; k<myObjects->size(); k++)
+		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
 			if((*myObjects)[k]->getName().compare(name) == 0)
 				return *(*myObjects)[k];
 		}
-		SpaceObject empty = new SpaceObject();
+		SpaceObject empty = SpaceObject(); // this makes it almost run out of memory
 		return empty;
 	}
 	
@@ -126,7 +126,7 @@ class SolarSystem
 	
 	void toggleOrbit(bool toggle)
 	{
-		for(int k = 0; k<myObjects->size(); k++)
+		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
 			(*myObjects)[k]->toggleOrbit(toggle);
 		}
@@ -134,7 +134,7 @@ class SolarSystem
 	
 	~SolarSystem()
 	{
-		for(int k = 0; k<myObjects->size(); k++)
+		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
 			delete (*myObjects)[k];
 		}
