@@ -97,7 +97,7 @@ class SolarSystem
 			}
 			
 		}
-		catch (IOException e) 
+		catch (char* str) 
 		{
 			cout << "BLAH" << endl;
 		}
