@@ -1,7 +1,9 @@
 #include "cglx.h"
 #include <vector>
 #include <string>
+#include <iostream.h>
 #include "space_objects.h"
+#include "vector_math.h"
 
 class SolarSystem
 {
