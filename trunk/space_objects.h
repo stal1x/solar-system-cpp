@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "cglx.h"
+#include "vector_math.h"
 
 class SpaceObject
 {
