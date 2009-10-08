@@ -7,14 +7,17 @@
  *
  */
 
+#ifndef VECTOR_MATH_H_
+#define VECTOR_MATH_H_
+
 #include <math.h>
 #include <algorithm>
 #include <string>
 
-class Tuple3;
-class Point3;
-class Vector3;
-class Color;
+// class Tuple3;
+// class Point3;
+// class Vector3;
+// class Color;
 
 class Tuple3
 {
@@ -590,3 +593,5 @@ public:
 //        return "[" + r + "," + g + "," + b + "]";
 //    }
 };
+
+#endif
