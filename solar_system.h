@@ -14,9 +14,9 @@ class SolarSystem
 	{
 		for(int k = 0; k<myObjects->size(); k++)
 		{
-			if(*myObjects[k]->getName().compare(obj.getParentName()) == 0)
+			if((*myObjects)[k]->getName().compare(obj.getParentName()) == 0)
 			{
-				*myObjects[k]->add(obj);
+				(*myObjects)[k]->add(&obj);
 			}
 		}
 	}
@@ -25,8 +25,8 @@ class SolarSystem
 	{
 		for(int k = 0; k<myObjects->size(); k++)
 		{
-			if(*myObjects[k].getName().compare(name) == 0)
-				return *myObjects[k];
+			if((*myObjects)[k]->getName().compare(name) == 0)
+				return *(*myObjects)[k];
 		}
 		return NULL;
 	}
@@ -66,7 +66,8 @@ class SolarSystem
 					
 					if(tokens[0].compare("Sun") == 0)
 					{
-						Sun obj = new Sun(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Sun obj = new Sun();
+						obj.setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
@@ -75,7 +76,8 @@ class SolarSystem
 					}
 					else if(tokens[0].compare("Planet") == 0)
 					{
-						Planet obj = new Planet(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Planet obj = new Planet();
+						obj.(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
@@ -84,7 +86,8 @@ class SolarSystem
 					}
 					else 
 					{
-						Moon obj = new Moon(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Moon obj = new Moon();
+						obj.(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
@@ -105,19 +108,19 @@ class SolarSystem
 	
 	void draw()
 	{
-		*myObjects[0]->draw();
+		(*myObjects)[0]->draw();
 	}
 	
 	void animate()
 	{
-		*myObjects[0]->animate();
+		(*myObjects)[0]->animate();
 	}
 	
 	void toggleOrbit(bool toggle)
 	{
 		for(int k = 0; k<myObjects->size(); k++)
 		{
-			*myObjects[k]->toggleOrbit(toggle);
+			(*myObjects)[k]->toggleOrbit(toggle);
 		}
 	}
 	
@@ -125,7 +128,7 @@ class SolarSystem
 	{
 		for(int k = 0; k<myObjects->size(); k++)
 		{
-			delete *myObjects[k];
+			delete (*myObjects)[k];
 		}
 		delete myObjects;
 	}

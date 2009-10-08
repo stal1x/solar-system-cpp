@@ -158,7 +158,7 @@ public:
      * @param other another point
      * @return the squared distance from this point to the other point
      */
-    double distanceSquared (Point3 other)
+    double distanceSquared (Tuple3 other)
     {
         double dx = (x - other.x);
         double dy = (y - other.y);
@@ -173,7 +173,7 @@ public:
      * @param other another point
      * @return the distance
      */
-    double distance (Point3 other)
+    double distance (Tuple3 other)
     {
         return sqrt(distanceSquared(other));
     }
@@ -184,7 +184,7 @@ public:
      * 
      * @param op1 the Vector3 to add
      */
-    void add (Vector3 vector)
+    void add (Tuple3 vector)
     {
         add(*this, vector);
     }
@@ -196,7 +196,7 @@ public:
      * @param point the input point
      * @param vector the input vector
      */
-    void add (Point3 point, Vector3 vector)
+    void add (Tuple3 point, Tuple3 vector)
     {
         x = vector.x + point.x;
         y = vector.y + point.y;
@@ -209,7 +209,7 @@ public:
      * 
      * @param op1 the Vector3 to substract
      */
-    void sub (Vector3 vector)
+    void sub (Tuple3 vector)
     {
         sub(*this, vector);
     }
@@ -221,7 +221,7 @@ public:
      * @param point the input point
      * @param vector the input vector
      */
-    void sub (Point3 point, Vector3 vector)
+    void sub (Tuple3 point, Tuple3 vector)
     {
         x = point.x - vector.x;
         y = point.y - vector.y;
@@ -235,7 +235,7 @@ public:
      * @param scale the input scale
      * @param vector the input vector
      */
-    void scaleAdd (double scale, Vector3 vector)
+    void scaleAdd (double scale, Tuple3 vector)
     {
         x += scale * vector.x;
         y += scale * vector.y;
@@ -285,7 +285,7 @@ public:
      * @param op1
      * @param op2
      */
-    void cross (Vector3 op1, Vector3 op2)
+    void cross (Tuple3 op1, Tuple3 op2)
     {
         x = op1.y * op2.z - op1.z * op2.y;
         y = op1.z * op2.x - op1.x * op2.z;
@@ -299,7 +299,7 @@ public:
      * @param rhs The right hand operand.
      * @return The dot product of this Vector3 object and the parameter Vector3.
      */
-    double dot (Vector3 rhs)
+    double dot (Tuple3 rhs)
     {
         return x * rhs.x + y * rhs.y + z * rhs.z;
     }
@@ -312,7 +312,7 @@ public:
      */
     double length ()
     {
-        return Math.sqrt(lengthSquared());
+        return sqrt(lengthSquared());
     }
 	
 	
@@ -349,9 +349,11 @@ public:
      * 
      * @param vector the Vector3 to add
      */
-    void add (Vector3 vector)
+    void add (Tuple3 vector)
     {
-        add(this, vector);
+        x += vector.x;
+		y += vector.y;
+		z += vector.z;
     }
 	
 	
@@ -362,7 +364,7 @@ public:
      * @param v1 the first operand
      * @param v2 the second operand
      */
-    void add (Vector3 v1, Vector3 v2)
+    void add (Tuple3 v1, Tuple3 v2)
     {
         x = v1.x + v2.x;
         y = v1.y + v2.y;
@@ -375,7 +377,7 @@ public:
      * 
      * @param vector the Tuple3 to subtract
      */
-    void sub (Vector3 vector)
+    void sub (Tuple3 vector)
     {
         x -= vector.x;
         y -= vector.y;
@@ -389,7 +391,7 @@ public:
      * @param p1 the first operand
      * @param p2 the second operand
      */
-    void sub (Point3 p1, Point3 p2)
+    void sub (Tuple3 p1, Tuple3 p2)
     {
         x = p1.x - p2.x;
         y = p1.y - p2.y;
@@ -432,16 +434,16 @@ public:
         Color(0, 0, 0);
     }
 	
-	
-    /**
-     * Copy constructor.
-     * 
-     * @param newColor The color to copy.
-     */
-    Color (Color newColor)
-    {
-        Color(newColor.r, newColor.g, newColor.b);
-    }
+//	
+//    /**
+//     * Copy constructor.
+//     * 
+//     * @param newColor The color to copy.
+//     */
+//    Color (Color newColor)
+//    {
+//        Color(newColor.r, newColor.g, newColor.b);
+//    }
 	
 	
     /**
@@ -547,11 +549,11 @@ public:
      * @param min the minimum value
      * @param max the maximum value
      */
-    void clamp (double min, double max)
+    void clamp (double minimum, double maximum)
     {
-        r = max(min(r, max), min);
-        g = max(min(g, max), min);
-        b = max(min(b, max), min);
+        r = max(min(r, maximum), minimum);
+        g = max(min(g, maximum), minimum);
+        b = max(min(b, maximum), minimum);
     }
 	
 	
