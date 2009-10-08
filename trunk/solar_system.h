@@ -1,22 +1,26 @@
 #include "cglx.h"
 #include <vector>
 #include <string>
+#include <ifstream>
+#include <fstream>
 #include <iostream>
 #include "space_objects.h"
 #include "vector_math.h"
+
+using namespace std;
 
 class SolarSystem
 {
   private:
     vector<SpaceObject*> *myObjects;
 	
-	void add(SpaceObject obj)
+	void add(SpaceObject *obj)
 	{
 		for(int k = 0; k<myObjects->size(); k++)
 		{
-			if((*myObjects)[k]->getName().compare(obj.getParentName()) == 0)
+			if((*myObjects)[k]->getName().compare(obj->getParentName()) == 0)
 			{
-				(*myObjects)[k]->add(&obj);
+				(*myObjects)[k]->add(obj);
 			}
 		}
 	}
@@ -28,7 +32,6 @@ class SolarSystem
 			if((*myObjects)[k]->getName().compare(name) == 0)
 				return *(*myObjects)[k];
 		}
-		return NULL;
 	}
 	
   public:
@@ -55,7 +58,7 @@ class SolarSystem
 					
 					double rot = atof(tokens[2].c_str);
 					double dist = atof(tokens[3].c_str);
-					SpaceObject oCenter = get(tokens[4].c_str);
+					SpaceObject oCenter = get(tokens[4]);
 					Vector3 rAxis = new Vector3(atof(rAxisString[0].c_str), atof(rAxisString[1].c_str), atof(rAxisString[2].c_str));
 					double size = atof(tokens[6].c_str);
 					string name = tokens[1];
@@ -66,8 +69,8 @@ class SolarSystem
 					
 					if(tokens[0].compare("Sun") == 0)
 					{
-						Sun obj = new Sun();
-						obj.setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Sun *obj = new Sun();
+						obj->setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
@@ -76,8 +79,8 @@ class SolarSystem
 					}
 					else if(tokens[0].compare("Planet") == 0)
 					{
-						Planet obj = new Planet();
-						obj.(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Planet *obj = new Planet();
+						obj->(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
@@ -86,8 +89,8 @@ class SolarSystem
 					}
 					else 
 					{
-						Moon obj = new Moon();
-						obj.(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						Moon *obj = new Moon();
+						obj->(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
