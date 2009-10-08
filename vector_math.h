@@ -7,6 +7,7 @@
  *
  */
 
+#include <math.h>
 #include <algorithm>
 #include <string>
 
@@ -109,10 +110,10 @@ public:
     /**
      * @see Object#toString()
      */
-    string toString ()
-    {
-        return "[" + x + "," + y + "," + z + "]";
-    }
+//    string toString ()
+//    {
+//        return "[" + x + "," + y + "," + z + "]";
+//    }
 };
 
 class Point3 : public Tuple3
@@ -174,7 +175,7 @@ public:
      */
     double distance (Point3 other)
     {
-        return Math.sqrt(distanceSquared(other));
+        return sqrt(distanceSquared(other));
     }
 	
 	
@@ -410,7 +411,7 @@ public:
     }
 };
 
-public class Color
+class Color
 {
 public:
     /** The red component. */
@@ -582,8 +583,8 @@ public:
     /**
      * @see Object#toString()
      */
-    string toString ()
-    {
-        return "[" + r + "," + g + "," + b + "]";
-    }
+//    string toString ()
+//    {
+//        return "[" + r + "," + g + "," + b + "]";
+//    }
 };
