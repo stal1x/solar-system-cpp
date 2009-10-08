@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <sstream>
 #include "space_objects.h"
 #include "vector_math.h"
 
@@ -45,18 +46,19 @@ class SolarSystem
 			myScanner.open("SolarSystem.txt");
 			while(!myScanner.eof())
 			{
-                string line;
-                getline(myScanner, line);
+				string line;
+				getline(myScanner, line);
+				
 				if(line[0] == '*')
 				{}
 				else 
 				{
 					stringstream ss(line);
-					vector<string> tokens = split(ss, ";");
-					stringstream ss2(tokens[5].c_str);
-					stringstream ss3(tokens[7].c_str);
-					vector<string> rAxisString = split(ss2, " ");
-					vector<string> oAxisString = split(ss3, " ");
+					vector<string> tokens = split(ss, ';');
+					stringstream ss2(tokens[5]);
+					stringstream ss3(tokens[7]);
+					vector<string> rAxisString = split(ss2, ' ');
+					vector<string> oAxisString = split(ss3, ' ');
 					
 					double rot = atof(tokens[2].c_str);
 					double dist = atof(tokens[3].c_str);
@@ -72,7 +74,7 @@ class SolarSystem
 					if(tokens[0].compare("Sun") == 0)
 					{
 						Sun *obj = new Sun();
-						obj->setParameters(rot, dist, oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
+						obj->setParameters(rot, dist, &oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
 						myObjects->insert(&obj);
 						if(name.compare("none"))
 						{
