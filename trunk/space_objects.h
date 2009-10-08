@@ -2,7 +2,7 @@
 #include <vector>
 #include "cglx.h"
 
-public class SpaceObject
+class SpaceObject
 {
   protected:
 	double myRotationAngle;
