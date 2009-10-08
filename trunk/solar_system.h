@@ -74,8 +74,8 @@ class SolarSystem
 					if(tokens[0].compare("Sun") == 0)
 					{
 						Sun *obj = new Sun();
-						obj->setParameters(rot, dist, &oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(obj);
+						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
+						myObjects->push_back(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
@@ -84,8 +84,8 @@ class SolarSystem
 					else if(tokens[0].compare("Planet") == 0)
 					{
 						Planet *obj = new Planet();
-						obj->setParameters(rot, dist, &oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(obj);
+						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
+						myObjects->push_back(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
@@ -94,8 +94,8 @@ class SolarSystem
 					else 
 					{
 						Moon *obj = new Moon();
-						obj->setParameters(rot, dist, &oCenter, rAxis, size, name, oAxis, oTilt, rTilt, oSpeed);
-						myObjects->insert(obj);
+						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
+						myObjects->push_back(obj);
 						if(name.compare("none"))
 						{
 							add(obj);
