@@ -23,8 +23,10 @@
 class Scene
 {
   private:
-    GLint  myAngle;
-    GLuint myNumRows;
+    SolarSystem *mySolarSystem;
+    static Point3 DEFAULT_CAMERA_FROM = Point3(65, 13, 3);
+    static Point3 DEFAULT_CAMERA_TO = Point3(0, 0, 0);
+    static Point3 DEFAULT_CAMERA_UP = Point3(0, 1, 0);
 
   public:
     /*
@@ -34,8 +36,7 @@ class Scene
      */
     virtual void init (GLfloat aspectRatio, int argc, char * argv[])
     {
-        myNumRows = (argc > 1) ? atoi(argv[1]) : 1;
-        myAngle = 0;
+        mySolarSystem = new SolarSystem();
     }
 
 
@@ -44,9 +45,9 @@ class Scene
      */
     virtual void setCamera ()
     {
-        gluLookAt(0, 0, 2.5,        // from position
-                  0, 0, 0,          // to position
-                  0, 1, 0);         // up direction
+        gluLookAt(DEFAULT_CAMERA_FROM.x, DEFAULT_CAMERA_FROM.y, DEFAULT_CAMERA_FROM.z,        // from position
+                  DEFAULT_CAMERA_TO.x, DEFAULT_CAMERA_TO.y, DEFAULT_CAMERA_TO.z,          // to position
+                  DEFAULT_CAMERA_UP.x, DEFAULT_CAMERA_UP.y, DEFAULT_CAMERA_UP.z);         // up direction
     }
 
 
@@ -57,23 +58,7 @@ class Scene
      */
     virtual void display ()
     {
-        // make grid of objects to view each spinning
-        GLfloat half = (myNumRows - 1) / 2.0;
-        for (GLuint r = 0; r < myNumRows; r++)
-        {
-            for (GLuint c = 0; c < myNumRows; c++)
-            {
-                GLint dir = ((r + c) % 2) ? -1 : 1;
-                glPushMatrix();
-                {
-                    glColor3f(0, 0.75, 1);
-                    glTranslatef((r - half) * 2.0 / myNumRows, (c - half) * 2.0 / myNumRows, 0.0);
-                    glRotatef(dir * myAngle, 0.0, 1.0, 0.0);
-                    glutSolidCube(0.5 / myNumRows);
-                }
-                glPopMatrix();
-            }
-        }
+        mySolarSystem->draw();
     }
 
 
@@ -84,8 +69,7 @@ class Scene
      */
     virtual void update ()
     {
-        // animate model by spinning it
-        myAngle += 5;
+        mySolarSystem->animate();
     }
 
 
