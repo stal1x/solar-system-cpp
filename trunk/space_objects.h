@@ -38,7 +38,7 @@ class SpaceObject
 		myShowOrbit = true;
 		
 		mySatellites = new vector<SpaceObject*>();
-		myOrbitCenter = NULL;
+		myOrbitCenter = new SpaceObject();
 	}
 	
 	~SpaceObject()
@@ -251,7 +251,7 @@ class Sun : public SpaceObject
 
 	virtual string getParentName() 
 	{
-		return "";
+		return "Space Object";
 	}
 	
 	virtual void colorObject()
