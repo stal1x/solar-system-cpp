@@ -99,7 +99,7 @@ class SolarSystem
 		}
 		catch (IOException e) 
 		{
-			<#handler#>
+			cout << "BLAH" << endl;
 		}
 	}
 	
