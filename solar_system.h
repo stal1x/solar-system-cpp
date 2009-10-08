@@ -45,7 +45,8 @@ class SolarSystem
 			myScanner.open("SolarSystem.txt");
 			while(!myScanner.eof())
 			{
-				string line = getline(myScanner, line);
+                string line;
+                getline(myScanner, line);
 				if(line[0] == '*')
 				{}
 				else 
