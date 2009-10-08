@@ -17,7 +17,7 @@ class SpaceObject
     double myRotationTilt;
     double myOrbitAngle;
     double myOrbitSpeed;
-    boolean myShowOrbit;
+    bool myShowOrbit;
     
     SpaceObject *myOrbitCenter;
     vector<SpaceObject*> *mySatellites;
@@ -28,10 +28,9 @@ class SpaceObject
 		myRotationAngle = 0;
 		myRotationSpeed = 0;
 		myDistance = 0;
-		myRotationAxis = NULL;
 		mySize = 0;
-		myName = NULL;
-		myOrbitAxis = NULL;
+		myName = "Space Object";
+        // myOrbitAxis = NULL;
 		myOrbitTilt = 0;
 		myRotationTilt = 0;
 		myOrbitAngle = 0;
@@ -79,7 +78,7 @@ class SpaceObject
             for(it = mySatellites->begin(); it < mySatellites->end(); it++)
 			{
 				glPushMatrix();
-				*it->drawOrbit(gl, glu, glut);
+				(*it)->drawOrbit();
 				glPopMatrix();
 			}
 		}
@@ -90,10 +89,11 @@ class SpaceObject
 		glutWireSphere(mySize, 20, 20);	//radius, slices, stacks
 		glPopMatrix();
 		
+		vector<SpaceObject*>::iterator it;
 	    for(it = mySatellites->begin(); it < mySatellites->end(); it++)
 		{
 			glPushMatrix();
-			*it->draw();
+			(*it)->draw();
 			glPopMatrix();
 		}
 	}
@@ -124,7 +124,7 @@ class SpaceObject
 	    vector<SpaceObject*>::iterator it;
         for(it = mySatellites->begin(); it < mySatellites->end(); it++)
 		{
-			*it->animate();
+			(*it)->animate();
 		}
 	}
 
@@ -163,7 +163,7 @@ class SpaceObject
 		return myOrbitAngle;
 	}
 
-	virtual void toggleOrbit(boolean toggle) 
+	virtual void toggleOrbit(bool toggle) 
 	{
 		myShowOrbit = toggle;
 	}
@@ -211,17 +211,14 @@ class Planet : public SpaceObject
 	    
 	}
 	
-	public void colorObject()
+	virtual void colorObject()
 	{
 		glColor3d(0, 0, 255);
 	}
 };
 
 class Sun : public SpaceObject
-{
-  private:
-      Color SUN_COLOR = Color(255, 255, 0);
-  
+{ 
   public:
 	Sun() : SpaceObject()
 	{
@@ -238,7 +235,7 @@ class Sun : public SpaceObject
 		glRotated(myOrbitTilt, 1, 0, 0);
 		glRotated(myOrbitAngle, myOrbitAxis.x, myOrbitAxis.y, myOrbitAxis.z);
 		glTranslated(myDistance, 0, 0);
-		glColor3d(SUN_COLOR.r, SUN_COLOR.g, SUN_COLOR.b);
+		glColor3d(255, 255, 0);
 	}
 	
 	virtual void animate()
@@ -248,17 +245,17 @@ class Sun : public SpaceObject
 	    vector<SpaceObject*>::iterator it;
         for(it = mySatellites->begin(); it < mySatellites->end(); it++)
 		{
-			*it->animate();
+			(*it)->animate();
 		}
 	}
 
-	virtual String getParentName() 
+	virtual string getParentName() 
 	{
 		return NULL;
 	}
 	
 	virtual void colorObject()
 	{
-		glColor3d(SUN_COLOR.r, SUN_COLOR.g, SUN_COLOR.b);
+		glColor3d(255, 255, 0);
 	}
 };
