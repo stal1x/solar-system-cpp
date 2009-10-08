@@ -19,22 +19,22 @@ class SolarSystem
 	{
 		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
-			if((*myObjects)[k]->getName().compare(obj->getParentName()) == 0)
+			string parentName = obj->getParentName();
+			if(((*myObjects)[k]->getName()).compare(parentName) == 0)
 			{
 				(*myObjects)[k]->add(obj);
 			}
 		}
 	}
 	
-	SpaceObject get(string name)
+	SpaceObject* get(string name)
 	{
 		for(unsigned int k = 0; k<myObjects->size(); k++)
 		{
 			if((*myObjects)[k]->getName().compare(name) == 0)
-				return *(*myObjects)[k];
+				return (*myObjects)[k];
 		}
-		SpaceObject empty = SpaceObject(); // this makes it almost run out of memory
-		return empty;
+		return NULL;
 	}
 	
   public:
@@ -45,65 +45,55 @@ class SolarSystem
 		{
 			ifstream myScanner;
 			myScanner.open("SolarSystem.txt");
-			while(!myScanner.eof())
+			while(true)
 			{
 				string line;
 				getline(myScanner, line);
-				
-				if(line[0] == '*')
-				{}
-				else 
+				if(!myScanner.eof())
 				{
-					stringstream ss(line);
-					vector<string> tokens = split(ss, ';');
-					stringstream ss2(tokens[5]);
-					stringstream ss3(tokens[7]);
-					vector<string> rAxisString = split(ss2, ' ');
-					vector<string> oAxisString = split(ss3, ' ');
-					
-					double rot = atof(tokens[2].c_str());
-					double dist = atof(tokens[3].c_str());
-					SpaceObject oCenter = get(tokens[4]);
-					Vector3 *rAxis = new Vector3(atof(rAxisString[0].c_str()), atof(rAxisString[1].c_str()), atof(rAxisString[2].c_str()));
-					double size = atof(tokens[6].c_str());
-					string name = tokens[1];
-					Vector3 *oAxis = new Vector3(atof(oAxisString[0].c_str()), atof(oAxisString[1].c_str()), atof(oAxisString[2].c_str()));
-					double oTilt = atof(tokens[8].c_str());
-					double rTilt = atof(tokens[9].c_str());
-					double oSpeed = atof(tokens[10].c_str());
-					
-					if(tokens[0].compare("Sun") == 0)
-					{
-						Sun *obj = new Sun();
-						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
-						myObjects->push_back(obj);
-						if(name.compare("Space Object"))
-						{
-							add(obj);
-						}
-					}
-					else if(tokens[0].compare("Planet") == 0)
-					{
-						Planet *obj = new Planet();
-						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
-						myObjects->push_back(obj);
-						if(name.compare("none"))
-						{
-							add(obj);
-						}
-					}
+					if(line[0] == '*')
+					{}
 					else 
 					{
-						Moon *obj = new Moon();
-						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
-						myObjects->push_back(obj);
-						if(name.compare("none"))
+						stringstream ss(line);
+						vector<string> tokens = split(ss, ';');
+						stringstream ss2(stringstream::in | stringstream::out);
+						ss2 << tokens[5];
+						stringstream ss3(tokens[7].c_str());
+						vector<string> rAxisString = split(ss2, ' ');
+						vector<string> oAxisString = split(ss3, ' ');
+						
+						double rot = atof(tokens[2].c_str());
+						double dist = atof(tokens[3].c_str());
+						SpaceObject *oCenter = get(tokens[4]);
+						Vector3 *rAxis = new Vector3(atof(rAxisString[0].c_str()), atof(rAxisString[1].c_str()), atof(rAxisString[2].c_str()));
+						double size = atof(tokens[6].c_str());
+						string name = tokens[1];
+						Vector3 *oAxis = new Vector3(atof(oAxisString[0].c_str()), atof(oAxisString[1].c_str()), atof(oAxisString[2].c_str()));
+						double oTilt = atof(tokens[8].c_str());
+						double rTilt = atof(tokens[9].c_str());
+						double oSpeed = atof(tokens[10].c_str());
+						SpaceObject *obj;
+						
+						if(tokens[0].compare("Sun") == 0)
 						{
-							add(obj);
+							obj = new Sun();
 						}
+						else if(tokens[0].compare("Planet") == 0)
+						{
+							obj = new Planet();
+						}
+						else 
+						{
+							obj = new Moon();
+						}
+						obj->setParameters(rot, dist, oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
+						myObjects->push_back(obj);
+						add(obj);
 					}
-
 				}
+				else
+					break;
 				
 			}
 			
