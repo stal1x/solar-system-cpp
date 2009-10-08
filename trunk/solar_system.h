@@ -1,7 +1,6 @@
 #include "cglx.h"
 #include <vector>
 #include <string>
-#include <ifstream>
 #include <fstream>
 #include <sstream>
 #include <iostream>
