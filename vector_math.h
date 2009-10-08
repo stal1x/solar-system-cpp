@@ -26,7 +26,7 @@ public:
      */
 	Tuple3 ()
     {
-        this(0, 0, 0);
+        Tuple3(0, 0, 0);
     }
 	
 	
@@ -38,7 +38,7 @@ public:
      */
     Tuple3 (Tuple3 newTuple)
     {
-        this(newTuple.x, newTuple.y, newTuple.z);
+        Tuple3(newTuple.x, newTuple.y, newTuple.z);
     }
 	
 	
@@ -66,9 +66,9 @@ public:
      */
     void scale (double op1)
     {
-        this.x *= op1;
-        this.y *= op1;
-        this.z *= op1;
+        x *= op1;
+        y *= op1;
+        z *= op1;
     }
 	
 	
@@ -80,9 +80,9 @@ public:
      */
     void set (Tuple3 inTuple)
     {
-        this.x = inTuple.x;
-        this.y = inTuple.y;
-        this.z = inTuple.z;
+        x = inTuple.x;
+        y = inTuple.y;
+        z = inTuple.z;
     }
 	
 	
@@ -95,9 +95,9 @@ public:
      */
     void set (double inX, double inY, double inZ)
     {
-        this.x = inX;
-        this.y = inY;
-        this.z = inZ;
+        x = inX;
+        y = inY;
+        z = inZ;
     }
 	
 	
@@ -154,9 +154,9 @@ public:
      */
     double distanceSquared (Point3 other)
     {
-        double dx = (this.x - other.x);
-        double dy = (this.y - other.y);
-        double dz = (this.z - other.z);
+        double dx = (x - other.x);
+        double dy = (y - other.y);
+        double dz = (z - other.z);
         return dx * dx + dy * dy + dz * dz;
     }
 	
@@ -180,7 +180,7 @@ public:
      */
     void add (Vector3 vector)
     {
-        add(this, vector);
+        add(*this, vector);
     }
 	
 	
@@ -192,9 +192,9 @@ public:
      */
     void add (Point3 point, Vector3 vector)
     {
-        this.x = vector.x + point.x;
-        this.y = vector.y + point.y;
-        this.z = vector.z + point.z;
+        x = vector.x + point.x;
+        y = vector.y + point.y;
+        z = vector.z + point.z;
     }
 	
 	
@@ -205,7 +205,7 @@ public:
      */
     void sub (Vector3 vector)
     {
-        sub(this, vector);
+        sub(*this, vector);
     }
 	
 	
@@ -217,9 +217,9 @@ public:
      */
     void sub (Point3 point, Vector3 vector)
     {
-        this.x = point.x - vector.x;
-        this.y = point.y - vector.y;
-        this.z = point.z - vector.z;
+        x = point.x - vector.x;
+        y = point.y - vector.y;
+        z = point.z - vector.z;
     }
 	
 	
@@ -231,9 +231,9 @@ public:
      */
     void scaleAdd (double scale, Vector3 vector)
     {
-        this.x += scale * vector.x;
-        this.y += scale * vector.y;
-        this.z += scale * vector.z;
+        x += scale * vector.x;
+        y += scale * vector.y;
+        z += scale * vector.z;
     }
 };
 
@@ -281,9 +281,9 @@ public:
      */
     void cross (Vector3 op1, Vector3 op2)
     {
-        this.x = op1.y * op2.z - op1.z * op2.y;
-        this.y = op1.z * op2.x - op1.x * op2.z;
-        this.z = op1.x * op2.y - op1.y * op2.x;
+        x = op1.y * op2.z - op1.z * op2.y;
+        y = op1.z * op2.x - op1.x * op2.z;
+        z = op1.x * op2.y - op1.y * op2.x;
     }
 	
 	
@@ -358,9 +358,9 @@ public:
      */
     void add (Vector3 v1, Vector3 v2)
     {
-        this.x = v1.x + v2.x;
-        this.y = v1.y + v2.y;
-        this.z = v1.z + v2.z;
+        x = v1.x + v2.x;
+        y = v1.y + v2.y;
+        z = v1.z + v2.z;
     }
 	
 	
@@ -371,9 +371,9 @@ public:
      */
     void sub (Vector3 vector)
     {
-        this.x -= vector.x;
-        this.y -= vector.y;
-        this.z -= vector.z;
+        x -= vector.x;
+        y -= vector.y;
+        z -= vector.z;
     }
 	
 	
@@ -385,9 +385,9 @@ public:
      */
     void sub (Point3 p1, Point3 p2)
     {
-        this.x = p1.x - p2.x;
-        this.y = p1.y - p2.y;
-        this.z = p1.z - p2.z;
+        x = p1.x - p2.x;
+        y = p1.y - p2.y;
+        z = p1.z - p2.z;
     }
 	
 	
@@ -399,9 +399,9 @@ public:
      */
     void scaleAdd (double scale, Tuple3 vector)
     {
-        this.x += scale * vector.x;
-        this.y += scale * vector.y;
-        this.z += scale * vector.z;
+        x += scale * vector.x;
+        y += scale * vector.y;
+        z += scale * vector.z;
     }
 };
 
@@ -423,7 +423,7 @@ public:
      */
     Color ()
     {
-        this(0, 0, 0);
+        Color(0, 0, 0);
     }
 	
 	
@@ -434,7 +434,7 @@ public:
      */
     Color (Color newColor)
     {
-        this(newColor.r, newColor.g, newColor.b);
+        Color(newColor.r, newColor.g, newColor.b);
     }
 	
 	
@@ -460,9 +460,9 @@ public:
      */
     void set (Color inColor)
     {
-        this.r = inColor.r;
-        this.g = inColor.g;
-        this.b = inColor.b;
+        r = inColor.r;
+        g = inColor.g;
+        b = inColor.b;
     }
 	
 	
@@ -475,9 +475,9 @@ public:
      */
     void set (double inR, double inG, double inB)
     {
-        this.r = inR;
-        this.g = inG;
-        this.b = inB;
+        r = inR;
+        g = inG;
+        b = inB;
     }
 	
 	
@@ -489,9 +489,9 @@ public:
      */
     void scale (Color rhs)
     {
-        this.r *= rhs.r;
-        this.g *= rhs.g;
-        this.b *= rhs.b;
+        r *= rhs.r;
+        g *= rhs.g;
+        b *= rhs.b;
     }
 	
 	
@@ -502,9 +502,9 @@ public:
      */
     void scale (double rhs)
     {
-        this.r *= rhs;
-        this.g *= rhs;
-        this.b *= rhs;
+        r *= rhs;
+        g *= rhs;
+        b *= rhs;
     }
 	
 	
@@ -515,9 +515,9 @@ public:
      */
     void add (Color rhs)
     {
-        this.r += rhs.r;
-        this.g += rhs.g;
-        this.b += rhs.b;
+        r += rhs.r;
+        g += rhs.g;
+        b += rhs.b;
     }
 	
 	
@@ -529,9 +529,9 @@ public:
      */
     void scaleAdd (double scale, Color rhs)
     {
-        this.r += scale * rhs.r;
-        this.g += scale * rhs.g;
-        this.b += scale * rhs.b;
+        r += scale * rhs.r;
+        g += scale * rhs.g;
+        b += scale * rhs.b;
     }
 	
 	
