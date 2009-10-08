@@ -3,6 +3,7 @@
 #include <string>
 #include <ifstream>
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include "space_objects.h"
 #include "vector_math.h"
