@@ -33,6 +33,8 @@ class SolarSystem
 			if((*myObjects)[k]->getName().compare(name) == 0)
 				return *(*myObjects)[k];
 		}
+		SpaceObject empty = new SpaceObject();
+		return empty;
 	}
 	
   public:
@@ -75,7 +77,7 @@ class SolarSystem
 						Sun *obj = new Sun();
 						obj->setParameters(rot, dist, &oCenter, *rAxis, size, name, *oAxis, oTilt, rTilt, oSpeed);
 						myObjects->push_back(obj);
-						if(name.compare("none"))
+						if(name.compare("Space Object"))
 						{
 							add(obj);
 						}
