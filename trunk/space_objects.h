@@ -251,7 +251,7 @@ class Sun : public SpaceObject
 
 	virtual string getParentName() 
 	{
-		return NULL;
+		return "";
 	}
 	
 	virtual void colorObject()
