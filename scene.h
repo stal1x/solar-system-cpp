@@ -25,9 +25,9 @@ class Scene
 {
   private:
     SolarSystem *mySolarSystem;
-    static Point3 DEFAULT_CAMERA_FROM = Point3(65, 13, 3);
-    static Point3 DEFAULT_CAMERA_TO = Point3(0, 0, 0);
-    static Point3 DEFAULT_CAMERA_UP = Point3(0, 1, 0);
+    // Point3 DEFAULT_CAMERA_FROM = Point3(65, 13, 3);
+    // Point3 DEFAULT_CAMERA_TO = Point3(0, 0, 0);
+    // Point3 DEFAULT_CAMERA_UP = Point3(0, 1, 0);
 
   public:
     /*
@@ -46,9 +46,9 @@ class Scene
      */
     virtual void setCamera ()
     {
-        gluLookAt(DEFAULT_CAMERA_FROM.x, DEFAULT_CAMERA_FROM.y, DEFAULT_CAMERA_FROM.z,        // from position
-                  DEFAULT_CAMERA_TO.x, DEFAULT_CAMERA_TO.y, DEFAULT_CAMERA_TO.z,          // to position
-                  DEFAULT_CAMERA_UP.x, DEFAULT_CAMERA_UP.y, DEFAULT_CAMERA_UP.z);         // up direction
+        gluLookAt(65, 13, 3,        // from position
+                  0, 0, 0,          // to position
+                  0, 1, 0);         // up direction
     }
 
 
