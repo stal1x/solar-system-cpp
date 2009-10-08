@@ -38,7 +38,7 @@ class SpaceObject
 		myShowOrbit = true;
 		
 		mySatellites = new vector<SpaceObject*>();
-		myOrbitCenter = new SpaceObject();
+//		myOrbitCenter = new SpaceObject();
 	}
 	
 	~SpaceObject()
@@ -211,7 +211,7 @@ class Planet : public SpaceObject
 	    
 	}
 	
-	virtual void colorObject()
+	void colorObject()
 	{
 		glColor3d(0, 0, 255);
 	}
@@ -225,12 +225,12 @@ class Sun : public SpaceObject
 
 	}
 	
-	virtual void drawOrbit()
+	void drawOrbit()
 	{
 		//no axis
 	}
 	
-	virtual void transform()
+	void transform()
 	{
 		glRotated(myOrbitTilt, 1, 0, 0);
 		glRotated(myOrbitAngle, myOrbitAxis.x, myOrbitAxis.y, myOrbitAxis.z);
@@ -238,7 +238,7 @@ class Sun : public SpaceObject
 		glColor3d(255, 255, 0);
 	}
 	
-	virtual void animate()
+	void animate()
 	{
 		myRotationAngle += myRotationSpeed;
 		
@@ -249,12 +249,12 @@ class Sun : public SpaceObject
 		}
 	}
 
-	virtual string getParentName() 
+	string getParentName() 
 	{
-		return "Space Object";
+		return "";
 	}
 	
-	virtual void colorObject()
+	void colorObject()
 	{
 		glColor3d(255, 255, 0);
 	}
