@@ -150,12 +150,8 @@ class Scene
                 // TODO: restart simulation
             	setDefaultCamera();
                 SolarSystem *toDelete = mySolarSystem;
-                cout << "to del " << toDelete << endl;
             	mySolarSystem = new SolarSystem();
-                cout << "to del after new ss " << toDelete << endl;
-                cout << "new ss " << mySolarSystem << endl;
-                // Cannot delete because old SS still being used?
-                // delete toDelete; // To prevent memory leak from restarting solar system
+                delete toDelete; // To prevent memory leak from restarting solar system
             	break;
             }
             // Reset camera view
