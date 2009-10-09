@@ -18,6 +18,19 @@
 #include "solar_system.h"
 #include "vector_math.h"
 
+#ifndef LEFT_KEY
+#define LEFT_KEY 100
+#endif
+#ifndef RIGHT_KEY
+#define RIGHT_KEY 102
+#endif
+#ifndef UP_KEY
+#define UP_KEY 101
+#endif
+#ifndef DOWN_KEY
+#define DOWN_KEY 103
+#endif
+
 //////////////////////////////////////////////////////////////////
 // Class Decalration
 //
@@ -128,7 +141,7 @@ class Scene
     	Vector3 rightDir;
     	rightDir.cross(viewDir, upDir);
     	rightDir.normalize();
-    	
+    	    	
         switch (key) 
         {
 		    case 'i': // Zoom In
@@ -163,18 +176,18 @@ class Scene
         switch (specialKey)
         {
             // Camera movement: Current implementation rotates around the spot.
-            // case KeyEvent.VK_LEFT:
-            //  myCamTo->add(rightDir);
-            //  break;
-            // case KeyEvent.VK_RIGHT:
-            //  myCamTo->sub(rightDir);
-            //  break;
-            // case KeyEvent.VK_UP:
-            //  myCamTo->add(upDir);
-            //  break;
-            // case KeyEvent.VK_DOWN:
-            //  myCamTo->sub(upDir);
-            //  break;
+            case LEFT_KEY:
+             myCamTo->add(rightDir);
+             break;
+            case RIGHT_KEY:
+             myCamTo->sub(rightDir);
+             break;
+            case UP_KEY:
+             myCamTo->add(upDir);
+             break;
+            case DOWN_KEY:
+             myCamTo->sub(upDir);
+             break;
         }
         
     }
