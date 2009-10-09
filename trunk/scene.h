@@ -25,11 +25,28 @@ class Scene
 {
   private:
     SolarSystem *mySolarSystem;
-    // Point3 DEFAULT_CAMERA_FROM = Point3(65, 13, 3);
-    // Point3 DEFAULT_CAMERA_TO = Point3(0, 0, 0);
-    // Point3 DEFAULT_CAMERA_UP = Point3(0, 1, 0);
+    Point3 *myCamFrom;
+    Point3 *myCamTo;
+    Point3 *myCamUp;
+    
+    void setDefaultCamera() {
+		myCamFrom->set(DEFAULT_CAMERA_FROM);
+        myCamTo->set(DEFAULT_CAMERA_TO);
+        myCamUp->set(DEFAULT_CAMERA_UP);
+	}
+
+    Vector3 getViewDir() {
+    	Vector3 viewDir = Vector3();
+    	viewDir.sub(*myCamFrom, *myCamTo);
+    	viewDir.normalize();
+    	return viewDir;
+    }
 
   public:
+    static const Point3 DEFAULT_CAMERA_FROM;
+    static const Point3 DEFAULT_CAMERA_TO;
+    static const Point3 DEFAULT_CAMERA_UP;
+      
     /*
      * Initialize general OpenGL values once (in place of constructor).
      *
@@ -38,6 +55,12 @@ class Scene
     virtual void init (GLfloat aspectRatio, int argc, char * argv[])
     {
         mySolarSystem = new SolarSystem();
+        
+        myCamFrom = new Point3();
+        myCamTo = new Point3();
+        myCamUp = new Point3();
+        
+        setDefaultCamera();
     }
 
 
@@ -46,9 +69,9 @@ class Scene
      */
     virtual void setCamera ()
     {
-        gluLookAt(65, 13, 3,        // from position
-                  0, 0, 0,          // to position
-                  0, 1, 0);         // up direction
+        gluLookAt(myCamFrom->x, myCamFrom->y, myCamFrom->z,        // from position
+                  myCamTo->x, myCamTo->y, myCamTo->z,          // to position
+                  myCamUp->x, myCamUp->y, myCamUp->z);         // up direction
     }
 
 
@@ -97,7 +120,42 @@ class Scene
      */
     virtual void keyPressed (unsigned char key, int specialKey, int x, int y)
     {
-        // by default, do nothing
+        Vector3 viewDir = getViewDir();
+    	Vector3 upDir;
+        upDir.set(*myCamUp);
+    	upDir.normalize();
+    	
+    	Vector3 rightDir;
+    	rightDir.cross(viewDir, upDir);
+    	rightDir.normalize();
+    	
+        switch (key) 
+        {
+		    case 'i': // Zoom In
+		    	myCamFrom->sub(viewDir);
+		    	break;
+		    case 'o': // Zoom out;
+		    	myCamFrom->add(viewDir);
+		    	break;
+        }
+        
+        switch (specialKey)
+        {
+            // Camera movement: Current implementation rotates around the spot.
+            // case KeyEvent.VK_LEFT:
+            //  myCamTo->add(rightDir);
+            //  break;
+            // case KeyEvent.VK_RIGHT:
+            //  myCamTo->sub(rightDir);
+            //  break;
+            // case KeyEvent.VK_UP:
+            //  myCamTo->add(upDir);
+            //  break;
+            // case KeyEvent.VK_DOWN:
+            //  myCamTo->sub(upDir);
+            //  break;
+        }
+        
     }
 
 
@@ -140,5 +198,9 @@ class Scene
         // by default, do nothing
     }
 };
+
+const Point3 Scene::DEFAULT_CAMERA_FROM(65, 13, 3);
+const Point3 Scene::DEFAULT_CAMERA_TO(0, 0, 0);
+const Point3 Scene::DEFAULT_CAMERA_UP(0, 1, 0);
 
 #endif
