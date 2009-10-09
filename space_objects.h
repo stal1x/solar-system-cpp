@@ -41,15 +41,11 @@ class SpaceObject
 		myShowOrbit = true;
 		
 		mySatellites = new vector<SpaceObject*>();
-//		myOrbitCenter = new SpaceObject();
 	}
 	
 	~SpaceObject()
 	{
         delete mySatellites;
-	    if (myOrbitCenter) {
-            delete myOrbitCenter;
-	    }
 	}
 		
 	virtual void setParameters(double rot, double dist, SpaceObject *oCenter, 
