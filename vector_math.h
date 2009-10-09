@@ -73,7 +73,7 @@ public:
      * 
      * @param op1 the scale factor
      */
-    void scale (double op1)
+    virtual void scale (double op1)
     {
         x *= op1;
         y *= op1;
@@ -87,7 +87,7 @@ public:
      * 
      * @param inTuple the input tuple
      */
-    void set (Tuple3 inTuple)
+    virtual void set (Tuple3 inTuple)
     {
         x = inTuple.x;
         y = inTuple.y;
@@ -102,7 +102,7 @@ public:
      * @param inY the new Y value
      * @param inZ the new Z value
      */
-    void set (double inX, double inY, double inZ)
+    virtual void set (double inX, double inY, double inZ)
     {
         x = inX;
         y = inY;

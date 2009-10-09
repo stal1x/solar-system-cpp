@@ -20,7 +20,7 @@
 #           Possible values: CPS, ACPUB, LINUX, CYGWIN, SGI, OSX
 # COURSE    current course you are in
 ##############################################################################
-EXEC   	  = demo
+EXEC   	  = solarsystem
 SRC_FILES = main.cpp
 INC_FILES = $(SRC_FILES:%.cpp=%.h)
 ARCH	  = OSX

@@ -1,3 +1,6 @@
+#ifndef SOLAR_SYSTEM_H_PKR0MEI0
+#define SOLAR_SYSTEM_H_PKR0MEI0
+
 #include "cglx.h"
 #include <vector>
 #include <string>
@@ -141,3 +144,5 @@ class SolarSystem
 		return tokens;
 	}
 };
+
+#endif /* end of include guard: SOLAR_SYSTEM_H_PKR0MEI0 */

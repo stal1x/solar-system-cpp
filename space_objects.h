@@ -1,3 +1,6 @@
+#ifndef SPACE_OBJECTS_H_KBOI6R5J
+#define SPACE_OBJECTS_H_KBOI6R5J
+
 #include <string>
 #include <vector>
 #include "cglx.h"
@@ -182,6 +185,9 @@ class SpaceObject
 class Moon : public SpaceObject
 {
   public:
+
+    static const Color MOON_COLOR;
+
 	Moon() : SpaceObject()
 	{
 		
@@ -194,13 +200,16 @@ class Moon : public SpaceObject
 	
 	void colorObject()
 	{
-		glColor3d(190, 190, 190);
+		glColor3d(MOON_COLOR.r, MOON_COLOR.g, MOON_COLOR.b);
 	}
 };
 
 class Planet : public SpaceObject
 {
   public:
+
+      static const Color PLANET_COLOR;
+
     Planet() : SpaceObject()
 	{
 
@@ -213,13 +222,16 @@ class Planet : public SpaceObject
 	
 	void colorObject()
 	{
-		glColor3d(0, 0, 255);
+		glColor3d(PLANET_COLOR.r, PLANET_COLOR.g, PLANET_COLOR.b);
 	}
 };
 
 class Sun : public SpaceObject
 { 
   public:
+      
+    static const Color SUN_COLOR;
+    
 	Sun() : SpaceObject()
 	{
 
@@ -235,7 +247,7 @@ class Sun : public SpaceObject
 		glRotated(myOrbitTilt, 1, 0, 0);
 		glRotated(myOrbitAngle, myOrbitAxis.x, myOrbitAxis.y, myOrbitAxis.z);
 		glTranslated(myDistance, 0, 0);
-		glColor3d(255, 255, 0);
+		glColor3d(SUN_COLOR.r, SUN_COLOR.g, SUN_COLOR.b);
 	}
 	
 	void animate()
@@ -256,6 +268,14 @@ class Sun : public SpaceObject
 	
 	void colorObject()
 	{
-		glColor3d(255, 255, 0);
+		glColor3d(SUN_COLOR.r, SUN_COLOR.g, SUN_COLOR.b);
 	}
 };
+
+const Color Planet::PLANET_COLOR(0.1, 0.1, 1);
+
+const Color Moon::MOON_COLOR(190, 190, 190);
+
+const Color Sun::SUN_COLOR(240, 240, 0);
+
+#endif /* end of include guard: SPACE_OBJECTS_H_KBOI6R5J */
