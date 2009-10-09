@@ -137,6 +137,31 @@ class Scene
 		    case 'o': // Zoom out;
 		    	myCamFrom->add(viewDir);
 		    	break;
+            case 'h':
+                // TODO: hide orbits
+            	mySolarSystem->toggleOrbit(false);
+                break;
+            case 'j':
+                // TODO: show orbits
+            	mySolarSystem->toggleOrbit(true);
+                break;
+            case 'r':
+            {
+                // TODO: restart simulation
+            	setDefaultCamera();
+                SolarSystem *toDelete = mySolarSystem;
+                cout << "to del " << toDelete << endl;
+            	mySolarSystem = new SolarSystem();
+                cout << "to del after new ss " << toDelete << endl;
+                cout << "new ss " << mySolarSystem << endl;
+                // Cannot delete because old SS still being used?
+                // delete toDelete; // To prevent memory leak from restarting solar system
+            	break;
+            }
+            // Reset camera view
+            case 'c':
+            	setDefaultCamera();
+            	break;
         }
         
         switch (specialKey)
